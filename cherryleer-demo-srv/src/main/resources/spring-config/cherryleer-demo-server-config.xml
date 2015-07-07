@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:ti-lnk="http://www.andpay.me/schema/ti/ti-lnk"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.andpay.me/schema/ti/ti-lnk http://www.andpay.me/schema/ti/ti-lnk/ti-lnk-1.1.0.xsd">
+
+    <context:annotation-config/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean class="me.andpay.ti.config.ctx.PropertyPlaceholderConfigurer">
+        <property name="systemId" value="cherryleer-demo"/>
+    </bean>
+
+    <bean class="me.andpay.ti.config.ns.NsRegistryImpl">
+        <property name="nsHome" value="${nsHome}"/>
+    </bean>
+
+    <ti-lnk:rpc id="cherryleer-demo-server.Rpc" default-rpc-server="defaultLnkServer" default-protocol-content-type="application/json-jackson-smile">
+        <ti-lnk:transport-amqp-server qserver-id="'/amqp/queue'" channel-cache-size="10"/>
+        <ti-lnk:rpc-server server-id="defaultLnkServer" concurrent="10">
+            <ti-lnk:listen-addresses>
+                <ti-lnk:amqp-address qserver-id="'/amqp/queue'" queue="cherryleer-demo"/>
+            </ti-lnk:listen-addresses>
+            <ti-lnk:bind>
+                <ti-lnk:service-group>cherryleer-demo.default</ti-lnk:service-group>
+            </ti-lnk:bind>
+        </ti-lnk:rpc-server>
+    </ti-lnk:rpc>
+
+    <import resource="cherryleer-demo-db-config.xml"/>
+
+    <bean id="messageService" class="me.andpay.ti.demo.service.MessageServiceImpl"/>
+
+</beans>

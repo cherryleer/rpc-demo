@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <context:annotation-config/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="dataSource" class="me.andpay.ti.config.ns.NsObjectFactoryBean">
+        <property name="nsPath" value="/db/mysql/cherryleer_demo_db"/>
+        <property name="objectType" value="org.apache.tomcat.jdbc.pool.DataSource"/>
+        <property name="objectDestroyMethod" value="close"/>
+        <property name="objectProperties">
+            <map>
+                <entry key="driverClassName" value="com.mysql.jdbc.Driver"/>
+                <entry key="testWhileIdle" value="true"/>
+                <entry key="validationQuery" value="select 1"/>
+                <entry key="validationInterval" value="30000"/>
+                <entry key="maxWait" value="10000"/>
+                <entry key="jdbcInterceptors"
+                       value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="me.andpay.ti.daf.hibernate.DafHibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernateSessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="hibernateSessionFactory" class="me.andpay.ti.daf.hibernate.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQLDialect
+                hibernate.show_sql=true
+                hibernate.use_outer_join=true
+                hibernate.jdbc.use_get_generated_keys=false
+                hibernate.max_fetch_depth=3
+                hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+            </value>
+        </property>
+        <property name="packagesToScan" value="me.andpay.ti.daf.dao.hibernate"/>
+        <property name="defaultFlag" value="true"/>
+    </bean>
+
+    <bean id="ac-common.HbmConfig" class="me.andpay.ti.daf.hibernate.HbmConfig">
+        <property name="packagesToScan">
+            <value>me.andpay.ti.demo</value>
+        </property>
+    </bean>
+
+    <bean id="messageDao" class="me.andpay.ti.demo.dao.MessageDao"/>
+    <bean id="simpleQueryFactory" class="me.andpay.ti.daf.dao.hibernate.simplequery.SimpleQueryFactoryImpl"/>
+
+
+</beans>

@@ -1,0 +1,7 @@
+# Ns
+#nsHome=src/main/resources/ns
+nsHome=${user.home}/.ti_config
+
+# Lnk
+qserver-id='/amqp/queue'
+ti-lnk-srv-lookup-file=${user.home}/.ti_config/lookup/ti-lnk-srv-lookup2
