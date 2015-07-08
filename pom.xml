@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.andpay.ti</groupId>
+    <groupId>com.cherryleer.rpc</groupId>
     <artifactId>cherryleer-demo</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -15,24 +15,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>me.andpay.ti.ti-lnk</groupId>
+            <groupId>com.cherryleer.rpc.ti-lnk</groupId>
             <artifactId>ti-lnk-spring</artifactId>
             <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>me.andpay.ti</groupId>
+            <groupId>com.cherryleer.rpc</groupId>
             <artifactId>ti-seq</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>me.andpay.ti.ti-srv-config</groupId>
+            <groupId>com.cherryleer.rpc.ti-srv-config</groupId>
             <artifactId>ti-srv-config-ctx</artifactId>
             <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>3.1.2.RELEASE</version>
         </dependency>
     </dependencies>
 

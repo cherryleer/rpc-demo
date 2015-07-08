@@ -12,11 +12,11 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean class="me.andpay.ti.config.ctx.PropertyPlaceholderConfigurer">
+    <bean class="com.cherryleer.rpc.config.ctx.PropertyPlaceholderConfigurer">
         <property name="systemId" value="cherryleer-demo"/>
     </bean>
 
-    <bean class="me.andpay.ti.config.ns.NsRegistryImpl">
+    <bean class="com.cherryleer.rpc.config.ns.NsRegistryImpl">
         <property name="nsHome" value="${nsHome}"/>
     </bean>
 
@@ -34,6 +34,6 @@
 
     <import resource="cherryleer-demo-db-config.xml"/>
 
-    <bean id="messageService" class="me.andpay.ti.demo.service.MessageServiceImpl"/>
+    <bean id="messageService" class="com.cherryleer.rpc.demo.service.MessageServiceImpl"/>
 
 </beans>

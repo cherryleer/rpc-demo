@@ -12,18 +12,18 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean class="me.andpay.ti.config.ctx.PropertyPlaceholderConfigurer">
+    <bean class="com.cherryleer.rpc.config.ctx.PropertyPlaceholderConfigurer">
         <property name="systemId" value="cherryleer-demo"/>
     </bean>
 
-    <bean class="me.andpay.ti.config.ns.NsRegistryImpl">
+    <bean class="com.cherryleer.rpc.config.ns.NsRegistryImpl">
         <property name="nsHome" value="${nsHome}"/>
     </bean>
 
     <ti-lnk:rpc id="cherryleer-demo-client.Rpc" default-protocol-content-type="application/json-jackson-smile">
     </ti-lnk:rpc>
 
-    <bean id="messageClientService" class="me.andpay.ti.demo.service.MessageClientServiceImpl"/>
-    <bean id="messageResponseHandler" class="me.andpay.ti.demo.handler.MessageResponseHandlerImpl"/>
+    <bean id="messageClientService" class="com.cherryleer.rpc.demo.service.MessageClientServiceImpl"/>
+    <bean id="messageResponseHandler" class="com.cherryleer.rpc.demo.handler.MessageResponseHandlerImpl"/>
 
 </beans>

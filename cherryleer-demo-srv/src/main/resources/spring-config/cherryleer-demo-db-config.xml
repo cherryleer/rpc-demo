@@ -14,7 +14,7 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="dataSource" class="me.andpay.ti.config.ns.NsObjectFactoryBean">
+    <bean id="dataSource" class="com.cherryleer.rpc.config.ns.NsObjectFactoryBean">
         <property name="nsPath" value="/db/mysql/cherryleer_demo_db"/>
         <property name="objectType" value="org.apache.tomcat.jdbc.pool.DataSource"/>
         <property name="objectDestroyMethod" value="close"/>
@@ -31,13 +31,13 @@
         </property>
     </bean>
 
-    <bean id="transactionManager" class="me.andpay.ti.daf.hibernate.DafHibernateTransactionManager">
+    <bean id="transactionManager" class="com.cherryleer.rpc.daf.hibernate.DafHibernateTransactionManager">
         <property name="sessionFactory" ref="hibernateSessionFactory"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="hibernateSessionFactory" class="me.andpay.ti.daf.hibernate.LocalSessionFactoryBean">
+    <bean id="hibernateSessionFactory" class="com.cherryleer.rpc.daf.hibernate.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <value>
@@ -49,18 +49,18 @@
                 hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
             </value>
         </property>
-        <property name="packagesToScan" value="me.andpay.ti.daf.dao.hibernate"/>
+        <property name="packagesToScan" value="com.cherryleer.rpc.daf.dao.hibernate"/>
         <property name="defaultFlag" value="true"/>
     </bean>
 
-    <bean id="ac-common.HbmConfig" class="me.andpay.ti.daf.hibernate.HbmConfig">
+    <bean id="ac-common.HbmConfig" class="com.cherryleer.rpc.daf.hibernate.HbmConfig">
         <property name="packagesToScan">
-            <value>me.andpay.ti.demo</value>
+            <value>com.cherryleer.rpc.demo</value>
         </property>
     </bean>
 
-    <bean id="messageDao" class="me.andpay.ti.demo.dao.MessageDao"/>
-    <bean id="simpleQueryFactory" class="me.andpay.ti.daf.dao.hibernate.simplequery.SimpleQueryFactoryImpl"/>
+    <bean id="messageDao" class="com.cherryleer.rpc.demo.dao.MessageDao"/>
+    <bean id="simpleQueryFactory" class="com.cherryleer.rpc.daf.dao.hibernate.simplequery.SimpleQueryFactoryImpl"/>
 
 
 </beans>

@@ -6,11 +6,11 @@
 
     <parent>
         <artifactId>cherryleer-demo</artifactId>
-        <groupId>me.andpay.ti</groupId>
+        <groupId>com.cherryleer.rpc</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>me.andpay.ti</groupId>
+    <groupId>com.cherryleer.rpc</groupId>
     <artifactId>cherryleer-demo-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cherryleer-demo-api</name>
